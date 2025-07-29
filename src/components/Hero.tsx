@@ -74,21 +74,10 @@ const Hero = () => {
             </div>
 
             {/* Voice Agent Popup - Top Left */}
-            <div className="hidden lg:block absolute w-[240px] xl:w-[280px] top-[12%] -left-[80px] xl:-left-[120px] z-30">
+            <div className="hidden lg:block absolute w-[240px] xl:w-[280px] top-[20%] -right-[80px] xl:-right-[120px] z-20">
               <Image
                 src="/images/voice-agent-popup.png"
                 alt="Voice agent configuration popup"
-                width={280}
-                height={120}
-                className="rounded-lg shadow-2xl w-full h-auto"
-              />
-            </div>
-
-            {/* Booking Rate Popup - Right Side */}
-            <div className="hidden lg:block absolute w-[240px] xl:w-[280px] top-[20%] -right-[80px] xl:-right-[120px] z-20">
-              <Image
-                src="/images/booking-rate-popup.png"
-                alt="Booking rate statistics popup"
                 width={280}
                 height={160}
                 className="rounded-lg shadow-2xl w-full h-auto"
