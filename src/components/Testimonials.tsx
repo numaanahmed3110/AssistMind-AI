@@ -49,7 +49,7 @@ const TestimonialCard = ({
         letterSpacing: "0%",
       }}
     >
-      "{quote}"
+      &ldquo;{quote}&rdquo;
     </p>
     <div className="mt-6 flex items-center">
       <Image
