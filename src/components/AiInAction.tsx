@@ -226,9 +226,9 @@ const AiInAction = () => {
             <div className="flex items-center justify-center gap-12 h-full">
               {agents.map((agent, index) => {
                 const isHovered = hoveredAgent === agent.id;
-                const isFirstAgent = index === 0;
+                // const isFirstAgent = index === 0;
                 const isLastAgent = index === agents.length - 1;
-                const isMiddleAgent = index === 1;
+                // const isMiddleAgent = index === 1;
 
                 // Calculate transforms based on which agent is hovered
                 let transform = "translateX(0px)";
@@ -364,7 +364,7 @@ const AiInAction = () => {
                               lineHeight: "150%",
                             }}
                           >
-                            "{agent.description}"
+                            &ldquo;{agent.description}&rdquo;
                           </motion.p>
 
                           {/* Audio Player Controls */}
