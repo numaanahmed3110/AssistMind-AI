@@ -39,7 +39,31 @@ const HowItWorks = () => {
             background: `radial-gradient(ellipse at center, #2525ba 0%, #060482 100%)`,
           }}
         >
-          <span className="inline-block bg-white text-indigo-700 text-lg font-medium px-6 py-2 rounded-full">
+          <span
+            className="bg-white text-indigo-700"
+            style={{
+              width: "auto",
+              height: "42px",
+              opacity: 1,
+              borderRadius: "76px",
+              borderWidth: "2px",
+              borderColor: "#6366f1",
+              borderStyle: "solid",
+              paddingTop: "16px",
+              paddingRight: "53px",
+              paddingBottom: "16px",
+              paddingLeft: "53px",
+              fontFamily: "Manrope",
+              fontWeight: 700,
+              fontSize: "19px",
+              lineHeight: "130%",
+              letterSpacing: "0%",
+              textAlign: "center",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             Step By Step
           </span>
           <h2 className="mt-6 text-4xl md:text-5xl font-bold tracking-tight">
@@ -49,15 +73,78 @@ const HowItWorks = () => {
           {/* Grid container with exact spacing as in reference */}
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-y-8 lg:gap-x-8 items-start">
             {steps.map((step, index) => (
-              <div key={index} className="relative text-left px-2">
-                <div className="bg-white text-gray-900 rounded-2xl p-6 shadow-lg h-full flex flex-col min-h-[240px]">
-                  <div className="w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center mb-4">
-                    <span className="text-xl font-bold">{step.number}</span>
+              <div key={index} className="relative text-center px-2">
+                <div
+                  className="bg-white text-gray-900 shadow-lg h-full flex flex-col items-center"
+                  style={{
+                    width: "320px",
+                    height: "237px",
+                    opacity: 1,
+                    gap: "8px",
+                    borderRadius: "12px",
+                    paddingTop: "20px",
+                    paddingRight: "15px",
+                    paddingBottom: "20px",
+                    paddingLeft: "15px",
+                    top: "170px",
+                    left: "-0.06px",
+                    borderWidth: "1px",
+                    borderStyle: "solid",
+                    borderColor: "#e5e7eb",
+                    transform: "rotate(0deg)",
+                    textAlign: "center",
+                  }}
+                >
+                  <div
+                    className="bg-blue-600 text-white rounded-full flex items-center justify-center"
+                    style={{
+                      width: "60px",
+                      height: "60px",
+                      opacity: 1,
+                      gap: "10px",
+                      borderRadius: "80px",
+                      padding: "16px",
+                      transform: "rotate(0deg)",
+                      margin: "0 auto",
+                      marginBottom: "10px",
+                    }}
+                  >
+                    <span
+                      className="text-white font-bold"
+                      style={{
+                        fontFamily: "Manrope",
+                        fontWeight: 700,
+                        fontSize: "18px",
+                      }}
+                    >
+                      {step.number}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                  <h3
+                    className="text-gray-900"
+                    style={{
+                      fontFamily: "Manrope",
+                      fontWeight: 700,
+                      fontSize: "22px",
+                      lineHeight: "125%",
+                      letterSpacing: "0px",
+                      textAlign: "center",
+                      marginBottom: "6px",
+                    }}
+                  >
                     {step.title}
                   </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed flex-grow">
+                  <p
+                    className="text-gray-600 flex-grow"
+                    style={{
+                      fontFamily: "Manrope",
+                      fontWeight: 600,
+                      fontSize: "18px",
+                      lineHeight: "140%",
+                      letterSpacing: "0%",
+                      textAlign: "center",
+                    }}
+                  >
                     {step.description}
                   </p>
                 </div>

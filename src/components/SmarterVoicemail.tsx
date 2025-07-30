@@ -36,7 +36,31 @@ const SmarterVoicemail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-16 items-center">
           {/* --- Left Column: Text Content --- */}
           <div className="text-left">
-            <span className="inline-block bg-indigo-100 text-indigo-700 text-xs font-medium px-6 py-2 rounded-full">
+            <span
+              className="bg-indigo-100 text-indigo-700"
+              style={{
+                width: "auto",
+                height: "40px",
+                opacity: 1,
+                borderRadius: "76px",
+                borderWidth: "2px",
+                borderColor: "#6366f1",
+                borderStyle: "solid",
+                paddingTop: "16px",
+                paddingRight: "53px",
+                paddingBottom: "16px",
+                paddingLeft: "53px",
+                fontFamily: "Manrope",
+                fontWeight: 700,
+                fontSize: "19px",
+                lineHeight: "130%",
+                letterSpacing: "0%",
+                textAlign: "center",
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
               Talk To Work Smarter
             </span>
 
@@ -52,7 +76,17 @@ const SmarterVoicemail = () => {
               {features.map((feature, index) => (
                 <li key={index} className="flex items-start">
                   <CheckIcon />
-                  <span className="ml-4 text-lg text-gray-700 leading-relaxed">
+                  <span
+                    className="ml-4 text-gray-700"
+                    style={{
+                      fontFamily: "Manrope",
+                      fontWeight: 600,
+                      fontSize: "18px",
+                      lineHeight: "140%",
+                      letterSpacing: "0%",
+                      textAlign: "center",
+                    }}
+                  >
                     {feature}
                   </span>
                 </li>
@@ -63,7 +97,17 @@ const SmarterVoicemail = () => {
           {/* --- Right Column: Image Composition --- */}
           <div className="relative h-[500px] md:h-[500px]">
             {/* Base Dashboard Image - Perfect rectangular container */}
-            <div className="absolute top-0 right-0 w-[85%] h-[80%] bg-white rounded-xl shadow-2xl overflow-hidden">
+            <div
+              className="absolute bg-white rounded-xl shadow-2xl overflow-hidden"
+              style={{
+                width: "661.64px",
+                height: "464.18px",
+                left: "15px",
+                top: "0px",
+                opacity: 1,
+                transform: "rotate(0deg)",
+              }}
+            >
               <Image
                 src="/images/call-log-dashboard.png"
                 alt="AssistMind AI Call Log Dashboard"
@@ -74,7 +118,7 @@ const SmarterVoicemail = () => {
               />
             </div>
             {/* Call Detail Popup Overlay - Positioned as in reference */}
-            <div className="absolute bottom-8 left-0 w-[65%] max-w-[380px]">
+            <div className="absolute bottom-4 left--9 w-[65%] max-w-[380px]">
               <Image
                 src="/images/call-detail-popup.png"
                 alt="Call detail popup with audio transcript"

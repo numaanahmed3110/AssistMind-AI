@@ -1,20 +1,50 @@
 // src/components/Navbar.tsx
+"use client";
 import React from "react";
 import Image from "next/image";
 
 const Navbar = () => {
+  // Enhanced smooth scroll function with custom 1-second animation
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const navbarHeight = 70; // Account for navbar height
+      const targetPosition = element.offsetTop - navbarHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <header className="sticky top-0 bg-white z-50 border-b border-gray-100 shadow-sm">
       <nav className="max-w-7xl mx-auto px-6 lg:px-8 py-4">
-        <div className="flex items-center justify-between">
+        <div
+          className="flex items-center"
+          style={{
+            width: "1240px",
+            height: "46px",
+            justifyContent: "space-between",
+            opacity: 1,
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           {/* Logo */}
           <div className="flex items-center">
             <Image
               src="/images/icon.png"
               alt="AssistMind AI"
-              width={180}
+              width={201}
               height={32}
               className="h-8 w-auto"
+              style={{
+                width: "201px",
+                height: "32px",
+                opacity: 1,
+              }}
               priority
             />
           </div>
@@ -22,49 +52,112 @@ const Navbar = () => {
           {/* Navigation Links */}
           <ul className="hidden lg:flex items-center space-x-8">
             <li>
-              <a
-                href="#"
-                className="text-base text-indigo-600 font-semibold hover:text-indigo-700 transition-colors"
+              <button
+                onClick={() => scrollToSection("hero")}
+                className="text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer bg-transparent border-none"
+                style={{
+                  fontFamily: "Manrope",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  lineHeight: "27px",
+                  letterSpacing: "0%",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                }}
               >
                 Home
-              </a>
+              </button>
             </li>
             <li>
-              <a
-                href="#"
-                className="text-base text-gray-600 hover:text-indigo-600 transition-colors font-medium"
+              <button
+                onClick={() => scrollToSection("features")}
+                className="text-gray-600 hover:text-indigo-600 transition-colors cursor-pointer bg-transparent border-none"
+                style={{
+                  fontFamily: "Manrope",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  lineHeight: "27px",
+                  letterSpacing: "0%",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                }}
               >
                 Features
-              </a>
+              </button>
             </li>
             <li>
-              <a
-                href="#"
-                className="text-base text-gray-600 hover:text-indigo-600 transition-colors font-medium"
+              <button
+                onClick={() => scrollToSection("how-it-works")}
+                className="text-gray-600 hover:text-indigo-600 transition-colors cursor-pointer bg-transparent border-none"
+                style={{
+                  fontFamily: "Manrope",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  lineHeight: "27px",
+                  letterSpacing: "0%",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                }}
               >
                 How it works
-              </a>
+              </button>
             </li>
             <li>
-              <a
-                href="#"
-                className="text-base text-gray-600 hover:text-indigo-600 transition-colors font-medium"
+              <button
+                onClick={() => scrollToSection("testimonials")}
+                className="text-gray-600 hover:text-indigo-600 transition-colors cursor-pointer bg-transparent border-none"
+                style={{
+                  fontFamily: "Manrope",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  lineHeight: "27px",
+                  letterSpacing: "0%",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                }}
               >
                 Resources
-              </a>
+              </button>
             </li>
             <li>
-              <a
-                href="#"
-                className="text-base text-gray-600 hover:text-indigo-600 transition-colors font-medium"
+              <button
+                onClick={() => scrollToSection("pricing")}
+                className="text-gray-600 hover:text-indigo-600 transition-colors cursor-pointer bg-transparent border-none"
+                style={{
+                  fontFamily: "Manrope",
+                  fontWeight: 500,
+                  fontSize: "18px",
+                  lineHeight: "27px",
+                  letterSpacing: "0%",
+                  textAlign: "center",
+                  verticalAlign: "middle",
+                }}
               >
                 Pricing
-              </a>
+              </button>
             </li>
           </ul>
 
           {/* CTA Button */}
-          <button className="hidden lg:block bg-[#4F46E5] text-white font-semibold px-6 py-2.5 rounded-lg text-base hover:bg-indigo-700 transition-colors shadow-sm">
+          <button
+            className="hidden lg:block bg-[#4F46E5] text-white hover:bg-indigo-700 transition-colors shadow-sm"
+            style={{
+              width: "130px",
+              height: "40px",
+              opacity: 1,
+              gap: "16px",
+              borderRadius: "12px",
+              padding: "12px",
+              fontFamily: "Manrope",
+              fontWeight: 600,
+              fontSize: "16px",
+              lineHeight: "100%",
+              letterSpacing: "0%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
             Get Started
           </button>
 
