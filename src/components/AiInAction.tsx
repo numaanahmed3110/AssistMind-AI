@@ -234,9 +234,10 @@ const AiInAction = () => {
                 let transform = "translateX(0px)";
                 if (hoveredAgent) {
                   if (hoveredAgent === agents[0].id) {
-                    // First agent hovered - move others to the right but keep them visible
-                    if (index === 1) transform = "translateX(200px)"; // Middle agent
-                    if (index === 2) transform = "translateX(250px)"; // Last agent
+                    // First agent hovered - move it more to the left and others less to the right
+                    if (index === 0) transform = "translateX(-100px)"; // First agent moves left more
+                    if (index === 1) transform = "translateX(80px)"; // Middle agent moves right less
+                    if (index === 2) transform = "translateX(120px)"; // Last agent moves right less
                   } else if (hoveredAgent === agents[1].id) {
                     // Middle agent hovered - move first and last left, show details on right
                     if (index === 0) transform = "translateX(-150px)"; // First agent moves left
