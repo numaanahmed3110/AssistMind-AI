@@ -50,18 +50,50 @@ const agents = [
 
 const AiInAction = () => {
   const [hoveredAgent, setHoveredAgent] = useState<string | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [activeAgentIndex, setActiveAgentIndex] = useState(0);
+
+  // Check if device is mobile
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768 || "ontouchstart" in window);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
+  // Handle scroll to detect which image is in view
+  const handleScroll = (e: React.UIEvent<HTMLDivElement>) => {
+    const container = e.currentTarget;
+    const scrollLeft = container.scrollLeft;
+    const itemWidth = 206 + 32; // image width + reduced gap for tighter spacing
+    const centerPosition = scrollLeft + container.offsetWidth / 2;
+    const newActiveIndex = Math.round(
+      (centerPosition - itemWidth / 2) / itemWidth
+    );
+
+    if (
+      newActiveIndex >= 0 &&
+      newActiveIndex < agents.length &&
+      newActiveIndex !== activeAgentIndex
+    ) {
+      setActiveAgentIndex(newActiveIndex);
+    }
+  };
 
   return (
-    <section className="bg-white py-20 md:pt-6 md:pb-15">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="bg-white pt-2 pb-8 md:pt-6 md:pb-15 overflow-x-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
         {/* --- Top Section: Trusted by Companies --- */}
         <div className="text-center">
           <p
-            className="text-gray-900 tracking-widest uppercase"
+            className="text-gray-900 tracking-widest uppercase pt-2 pb-4"
             style={{
               fontFamily: "Manrope",
               fontWeight: 700,
-              fontSize: "32px",
+              fontSize: "clamp(18px, 4vw, 32px)",
               lineHeight: "130%",
               letterSpacing: "0%",
               textAlign: "center",
@@ -83,18 +115,15 @@ const AiInAction = () => {
                   key={`first-${index}`}
                   className="flex items-center bg-white shadow-sm flex-shrink-0"
                   style={{
-                    width: "230px",
-                    height: "88px",
+                    width: "150px",
+                    height: "57px",
                     opacity: 1,
                     gap: "10px",
                     borderRadius: "16px",
                     borderWidth: "1px",
                     borderColor: "#e5e7eb",
                     borderStyle: "solid",
-                    paddingTop: "20px",
-                    paddingRight: "27px",
-                    paddingBottom: "20px",
-                    paddingLeft: "27px",
+                    padding: "12px",
                     justifyContent: "center",
                     alignItems: "center",
                   }}
@@ -105,8 +134,8 @@ const AiInAction = () => {
                     width={44}
                     height={44}
                     style={{
-                      width: "39px",
-                      height: "39px",
+                      width: "clamp(24px, 4vw, 39px)",
+                      height: "clamp(24px, 4vw, 39px)",
                       opacity: 1,
                       position: "relative",
                       top: "2px",
@@ -116,7 +145,7 @@ const AiInAction = () => {
                     className="text-gray-700"
                     style={{
                       fontWeight: "bold",
-                      fontSize: "20px",
+                      fontSize: "clamp(14px, 2.5vw, 20px)",
                     }}
                   >
                     {company.name}
@@ -129,18 +158,15 @@ const AiInAction = () => {
                   key={`second-${index}`}
                   className="flex items-center bg-white shadow-sm flex-shrink-0"
                   style={{
-                    width: "230px",
-                    height: "88px",
+                    width: "150px",
+                    height: "57px",
                     opacity: 1,
                     gap: "10px",
                     borderRadius: "16px",
                     borderWidth: "1px",
                     borderColor: "#e5e7eb",
                     borderStyle: "solid",
-                    paddingTop: "20px",
-                    paddingRight: "27px",
-                    paddingBottom: "20px",
-                    paddingLeft: "27px",
+                    padding: "12px",
                     justifyContent: "center",
                     alignItems: "center",
                   }}
@@ -151,8 +177,8 @@ const AiInAction = () => {
                     width={44}
                     height={44}
                     style={{
-                      width: "44px",
-                      height: "44px",
+                      width: "clamp(28px, 4vw, 44px)",
+                      height: "clamp(28px, 4vw, 44px)",
                       opacity: 1,
                       position: "relative",
                       top: "2px",
@@ -162,7 +188,7 @@ const AiInAction = () => {
                     className="text-gray-700"
                     style={{
                       fontWeight: "bold",
-                      fontSize: "18px",
+                      fontSize: "clamp(12px, 2vw, 18px)",
                     }}
                   >
                     {company.name}
@@ -179,20 +205,21 @@ const AiInAction = () => {
             className="bg-indigo-100 text-indigo-700"
             style={{
               width: "auto",
-              height: "42px",
+              height: "45px",
               opacity: 1,
+              gap: "10px",
               borderRadius: "76px",
               borderWidth: "2px",
               borderColor: "#6366f1",
               borderStyle: "solid",
-              paddingTop: "16px",
+              paddingTop: "12px",
               paddingRight: "53px",
-              paddingBottom: "16px",
+              paddingBottom: "12px",
               paddingLeft: "53px",
               fontFamily: "Manrope",
               fontWeight: 700,
-              fontSize: "19px",
-              lineHeight: "130%",
+              fontSize: "14px",
+              lineHeight: "21px",
               letterSpacing: "0%",
               textAlign: "center",
               display: "flex",
@@ -208,8 +235,8 @@ const AiInAction = () => {
             className="mt-4 text-gray-900"
             style={{
               fontFamily: "Manrope",
-              fontWeight: 900,
-              fontSize: "40px",
+              fontWeight: 700,
+              fontSize: "clamp(24px, 5vw, 40px)",
               lineHeight: "130%",
               letterSpacing: "0%",
               textAlign: "center",
@@ -219,215 +246,433 @@ const AiInAction = () => {
           </h2>
 
           {/* Agent Cards Grid with Sliding Animation */}
-          <div
-            className="mt-5 relative overflow-hidden max-w-7xl mx-auto"
-            style={{ height: "500px" }}
-          >
-            <div className="flex items-center justify-center gap-12 h-full">
-              {agents.map((agent, index) => {
-                const isHovered = hoveredAgent === agent.id;
-                // const isFirstAgent = index === 0;
-                const isLastAgent = index === agents.length - 1;
-                // const isMiddleAgent = index === 1;
-
-                // Calculate transforms based on which agent is hovered
-                let transform = "translateX(0px)";
-                if (hoveredAgent) {
-                  if (hoveredAgent === agents[0].id) {
-                    // First agent hovered - move it more to the left and others less to the right
-                    if (index === 0) transform = "translateX(-100px)"; // First agent moves left more
-                    if (index === 1) transform = "translateX(80px)"; // Middle agent moves right less
-                    if (index === 2) transform = "translateX(120px)"; // Last agent moves right less
-                  } else if (hoveredAgent === agents[1].id) {
-                    // Middle agent hovered - move first and last left, show details on right
-                    if (index === 0) transform = "translateX(-150px)"; // First agent moves left
-                    if (index === 2) transform = "translateX(150px)"; // Last agent moves right but less
-                  } else if (hoveredAgent === agents[2].id) {
-                    // Last agent hovered - move it more to the right and others less to the left
-                    if (index === 0) transform = "translateX(-120px)"; // First agent moves left less
-                    if (index === 1) transform = "translateX(-80px)"; // Middle agent moves left less
-                    if (index === 2) transform = "translateX(100px)"; // Last agent moves right more
-                  }
-                }
-
-                return (
-                  <motion.div
-                    key={agent.id}
-                    className="relative flex items-center"
-                    onMouseEnter={() => setHoveredAgent(agent.id)}
-                    onMouseLeave={() => setHoveredAgent(null)}
-                    animate={{
-                      transform,
-                      zIndex: isHovered ? 20 : 10,
-                    }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
+          <div className="mt-5 relative overflow-visible max-w-7xl mx-auto h-[500px] lg:h-[450px] md:h-[400px] sm:h-auto pb-16">
+            <div className="flex items-start justify-center gap-12 lg:gap-8 md:gap-6 sm:gap-4 h-full md:overflow-x-visible">
+              {isMobile ? (
+                // Mobile: Horizontal scrollable carousel with one main image and partial side images
+                <div className="w-full pb-8 pt-4">
+                  <div
+                    className="overflow-x-auto overflow-y-visible scrollbar-hide"
+                    onScroll={handleScroll}
                     style={{
-                      position: "relative",
+                      scrollBehavior: "smooth",
+                      scrollSnapType: "x mandatory",
                     }}
                   >
-                    {/* Agent Image */}
-                    <motion.div
-                      className="relative flex-shrink-0 bg-gray-50 cursor-pointer"
-                      style={{
-                        width: "284px",
-                        height: "393px",
-                        borderRadius: "12px",
-                        paddingTop: "16px",
-                        paddingRight: "37px",
-                        paddingBottom: "16px",
-                        paddingLeft: "37px",
-                      }}
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3, ease: "easeOut" }}
+                    <div
+                      className="flex gap-8 px-12 py-2"
+                      style={{ width: "max-content" }}
                     >
-                      <Image
-                        src={agent.image}
-                        alt={agent.name}
-                        fill
-                        className="rounded-xl shadow-xl object-contain"
-                        sizes="284px"
-                      />
-                    </motion.div>
-
-                    {/* Service Details Card - Appears beside the image */}
-                    <AnimatePresence>
-                      {isHovered && (
-                        <motion.div
-                          initial={{
-                            opacity: 0,
-                            x: isLastAgent ? -50 : 50,
-                            scale: 0.9,
-                          }}
-                          animate={{
-                            opacity: 1,
-                            x: 0,
-                            scale: 1,
-                          }}
-                          exit={{
-                            opacity: 0,
-                            x: isLastAgent ? -50 : 50,
-                            scale: 0.9,
-                          }}
-                          transition={{
-                            duration: 0.4,
-                            ease: "easeOut",
-                            delay: 0.1,
-                          }}
-                          className="absolute bg-white rounded-2xl shadow-2xl border border-gray-100"
-                          style={{
-                            width: "350px",
-                            height: "393px",
-                            padding: "28px",
-                            left: isLastAgent ? "-370px" : "304px",
-                            top: "0px",
-                            zIndex: 30,
-                          }}
+                      {agents.map((agent, index) => (
+                        <div
+                          key={agent.id}
+                          className="flex flex-col items-center flex-shrink-0"
+                          style={{ scrollSnapAlign: "center" }}
                         >
-                          {/* Category Badge */}
-                          <motion.span
-                            className="inline-block bg-[#4F46E5] text-white font-bold px-4 py-2 rounded-lg mb-4"
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.2 }}
+                          {/* Agent Image */}
+                          <div
+                            className="relative flex-shrink-0 bg-gray-50"
                             style={{
-                              fontSize: "14px",
-                              fontFamily: "Manrope",
+                              width: "206px",
+                              height: "281px",
+                              opacity: 1,
+                              gap: "10px",
+                              paddingTop: "16px",
+                              paddingRight: "37px",
+                              paddingBottom: "16px",
+                              paddingLeft: "37px",
+                              borderTopRightRadius: "16px",
+                              borderBottomRightRadius: "16px",
+                              borderTopLeftRadius: "16px",
+                              borderBottomLeftRadius: "16px",
                             }}
                           >
-                            {agent.category}
-                          </motion.span>
+                            <Image
+                              src={agent.image}
+                              alt={agent.name}
+                              fill
+                              className="rounded-xl shadow-xl object-contain"
+                              sizes="206px"
+                            />
+                          </div>
 
-                          {/* Service Title */}
-                          <motion.h3
-                            className="text-gray-900 mb-3"
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.3 }}
-                            style={{
-                              fontFamily: "Manrope",
-                              fontWeight: 800,
-                              fontSize: "22px",
-                              lineHeight: "130%",
-                            }}
-                          >
-                            {agent.service}
-                          </motion.h3>
+                          {/* Mobile Agent Details Box - Appears below each image, only visible for active */}
+                          <AnimatePresence>
+                            {index === activeAgentIndex && (
+                              // <div className="mt-4 flex items-start gap-3">
+                              /* Blue Details Tag */
+                              /* <motion.div
+                                  initial={{ opacity: 0, x: -20, scale: 0.8 }}
+                                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                                  exit={{ opacity: 0, x: -20, scale: 0.8 }}
+                                  transition={{ 
+                                    duration: 0.3, 
+                                    ease: "easeOut",
+                                    delay: 0.1
+                                  }}
+                                  className="bg-[#4F46E5] text-white rounded-2xl flex items-center justify-center shadow-lg"
+                                  style={{
+                                    width: "48px",
+                                    height: "48px",
+                                    flexShrink: 0,
+                                  }}
+                                >
+                                  <svg 
+                                    className="w-6 h-6" 
+                                    fill="currentColor" 
+                                    viewBox="0 0 20 20"
+                                  >
+                                    <path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"/>
+                                  </svg>
+                                </motion.div> */
 
-                          {/* Description */}
-                          <motion.p
-                            className="text-gray-600 mb-6 leading-relaxed"
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.4 }}
-                            style={{
-                              fontFamily: "Manrope",
-                              fontSize: "15px",
-                              lineHeight: "150%",
-                            }}
-                          >
-                            &ldquo;{agent.description}&rdquo;
-                          </motion.p>
-
-                          {/* Audio Player Controls */}
-                          <motion.div
-                            className="flex items-center gap-4"
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.5 }}
-                          >
-                            <motion.button
-                              className="bg-[#4F46E5] text-white rounded-full flex-shrink-0 flex items-center justify-center hover:bg-indigo-700 transition-colors shadow-lg"
-                              style={{
-                                width: "48px",
-                                height: "48px",
-                              }}
-                              whileHover={{ scale: 1.1 }}
-                              whileTap={{ scale: 0.95 }}
-                            >
-                              <svg
-                                className="w-5 h-5 ml-1"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
+                              /* Details Content */
+                              <motion.div
+                                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                                transition={{
+                                  duration: 0.3,
+                                  ease: "easeOut",
+                                  opacity: { duration: 0.2 },
+                                  y: { duration: 0.3 },
+                                  scale: { duration: 0.3 },
+                                }}
+                                className="mt-4 bg-white rounded-2xl shadow-lg border border-gray-100 p-4"
+                                style={{
+                                  width: "206px",
+                                  opacity: 1,
+                                }}
                               >
-                                <path d="M6.3 5.17a1.4 1.4 0 00-2.1 1.63L7.6 12l-3.4 5.2a1.4 1.4 0 002.1 1.63L13 12 6.3 5.17z" />
-                              </svg>
-                            </motion.button>
+                                {/* Category Badge */}
+                                <motion.span
+                                  className="inline-block bg-[#4F46E5] text-white font-bold px-3 py-1.5 rounded-lg text-sm mb-3"
+                                  initial={{ opacity: 0, x: -10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  transition={{ delay: 0.15, duration: 0.2 }}
+                                  style={{
+                                    fontFamily: "Manrope",
+                                    fontWeight: 600,
+                                    fontSize: "12px",
+                                  }}
+                                >
+                                  {agent.category}
+                                </motion.span>
 
-                            <div className="flex-1">
-                              <div className="bg-gray-200 rounded-full h-2 mb-2">
+                                {/* Service Title */}
+                                <motion.h3
+                                  className="text-gray-900 mb-3"
+                                  style={{
+                                    fontFamily: "Manrope",
+                                    fontWeight: 700,
+                                    fontSize: "16px",
+                                    lineHeight: "130%",
+                                  }}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.2, duration: 0.2 }}
+                                >
+                                  {agent.service}
+                                </motion.h3>
+
+                                {/* Description Message */}
+                                <motion.p
+                                  className="text-gray-700 mb-4 leading-relaxed"
+                                  style={{
+                                    fontFamily: "Manrope",
+                                    fontSize: "12px",
+                                    lineHeight: "150%",
+                                    fontWeight: 400,
+                                  }}
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.25, duration: 0.2 }}
+                                >
+                                  {agent.description.substring(0, 80)}...
+                                </motion.p>
+
+                                {/* Audio Player Controls */}
                                 <motion.div
-                                  className="bg-[#4F46E5] h-2 rounded-full"
-                                  initial={{ width: "0%" }}
-                                  animate={{ width: "25%" }}
-                                  transition={{ duration: 0.8, delay: 0.6 }}
-                                />
-                              </div>
-                              <div className="flex justify-between text-sm text-gray-500">
-                                <span
-                                  style={{
-                                    fontFamily: "Manrope",
-                                    fontWeight: 500,
-                                  }}
+                                  className="flex items-center gap-3 p-3 bg-gray-50 rounded-xl"
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.3, duration: 0.2 }}
                                 >
-                                  0:00
-                                </span>
-                                <span
-                                  style={{
-                                    fontFamily: "Manrope",
-                                    fontWeight: 500,
-                                  }}
+                                  <motion.button
+                                    className="bg-[#4F46E5] text-white rounded-full flex-shrink-0 flex items-center justify-center hover:bg-indigo-700 transition-colors shadow-sm"
+                                    style={{
+                                      width: "32px",
+                                      height: "32px",
+                                    }}
+                                    whileHover={{ scale: 1.1 }}
+                                    whileTap={{ scale: 0.95 }}
+                                  >
+                                    <svg
+                                      className="w-4 h-4 ml-0.5"
+                                      viewBox="0 0 20 20"
+                                      fill="currentColor"
+                                    >
+                                      <path d="M6.3 5.17a1.4 1.4 0 00-2.1 1.63L7.6 12l-3.4 5.2a1.4 1.4 0 002.1 1.63L13 12 6.3 5.17z" />
+                                    </svg>
+                                  </motion.button>
+
+                                  <div className="flex-1">
+                                    <div className="bg-gray-300 rounded-full h-1.5 mb-1.5 relative">
+                                      <motion.div
+                                        className="bg-[#4F46E5] h-1.5 rounded-full relative"
+                                        initial={{ width: "0%" }}
+                                        animate={{ width: "25%" }}
+                                        transition={{
+                                          delay: 0.35,
+                                          duration: 0.5,
+                                        }}
+                                      >
+                                        {/* Progress indicator dot */}
+                                        <div className="absolute right-0 top-1/2 transform translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-white border border-[#4F46E5] rounded-full shadow-sm"></div>
+                                      </motion.div>
+                                    </div>
+                                    <div className="flex justify-end">
+                                      <span
+                                        className="text-gray-600 font-semibold"
+                                        style={{
+                                          fontFamily: "Manrope",
+                                          fontWeight: 600,
+                                          fontSize: "10px",
+                                        }}
+                                      >
+                                        {agent.duration}
+                                      </span>
+                                    </div>
+                                  </div>
+                                </motion.div>
+                              </motion.div>
+                              /* </div> */
+                            )}
+                          </AnimatePresence>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                // Desktop: Original layout with hover effects
+                agents.map((agent, index) => {
+                  const isHovered = hoveredAgent === agent.id;
+                  // const isFirstAgent = index === 0;
+                  const isLastAgent = index === agents.length - 1;
+                  // const isMiddleAgent = index === 1;
+
+                  // Calculate transforms based on which agent is hovered - disable on mobile
+                  let transform = "translateX(0px)";
+                  if (hoveredAgent && !isMobile) {
+                    if (hoveredAgent === agents[0].id) {
+                      // First agent hovered - move it more to the left and others less to the right
+                      if (index === 0)
+                        transform = "translateX(clamp(-150px, -12vw, -60px))"; // First agent moves left more
+                      if (index === 1)
+                        transform = "translateX(clamp(40px, 8vw, 80px))"; // Middle agent moves right less
+                      if (index === 2)
+                        transform = "translateX(clamp(60px, 12vw, 120px))"; // Last agent moves right less
+                    } else if (hoveredAgent === agents[1].id) {
+                      // Middle agent hovered - move first and last left, show details on right
+                      if (index === 0)
+                        transform = "translateX(clamp(-200px, -15vw, -100px))"; // First agent moves left
+                      if (index === 2)
+                        transform = "translateX(clamp(75px, 15vw, 150px))"; // Last agent moves right but less
+                    } else if (hoveredAgent === agents[2].id) {
+                      // Last agent hovered - move it more to the right and others less to the left
+                      if (index === 0)
+                        transform = "translateX(clamp(-150px, -12vw, -80px))"; // First agent moves left less
+                      if (index === 1)
+                        transform = "translateX(clamp(-100px, -8vw, -50px))"; // Middle agent moves left less
+                      if (index === 2)
+                        transform = "translateX(clamp(50px, 10vw, 100px))"; // Last agent moves right more
+                    }
+                  }
+
+                  return (
+                    <motion.div
+                      key={agent.id}
+                      className="relative flex items-center flex-shrink-0"
+                      onMouseEnter={() =>
+                        !isMobile && setHoveredAgent(agent.id)
+                      }
+                      onMouseLeave={() => !isMobile && setHoveredAgent(null)}
+                      animate={{
+                        transform,
+                        zIndex: isHovered ? 20 : 10,
+                      }}
+                      transition={{ duration: 0.5, ease: "easeInOut" }}
+                      style={{
+                        position: "relative",
+                      }}
+                    >
+                      {/* Agent Image */}
+                      <motion.div
+                        className="relative flex-shrink-0 bg-gray-50 cursor-pointer"
+                        style={{
+                          width: "clamp(200px, 25vw, 284px)",
+                          height: "clamp(280px, 35vw, 393px)",
+                          borderRadius: "12px",
+                          paddingTop: "16px",
+                          paddingRight: "clamp(20px, 4vw, 37px)",
+                          paddingBottom: "16px",
+                          paddingLeft: "clamp(20px, 4vw, 37px)",
+                        }}
+                        whileHover={{ scale: 1.05 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                      >
+                        <Image
+                          src={agent.image}
+                          alt={agent.name}
+                          fill
+                          className="rounded-xl shadow-xl object-contain"
+                          sizes="(max-width: 640px) 200px, (max-width: 1024px) 240px, 284px"
+                        />
+                      </motion.div>
+
+                      {/* Service Details Card - Appears beside the image */}
+                      <AnimatePresence>
+                        {isHovered && !isMobile && (
+                          <motion.div
+                            initial={{
+                              opacity: 0,
+                              x: isLastAgent ? -50 : 50,
+                              scale: 0.9,
+                            }}
+                            animate={{
+                              opacity: 1,
+                              x: 0,
+                              scale: 1,
+                            }}
+                            exit={{
+                              opacity: 0,
+                              x: isLastAgent ? -50 : 50,
+                              scale: 0.9,
+                            }}
+                            transition={{
+                              duration: 0.4,
+                              ease: "easeOut",
+                              delay: 0.1,
+                            }}
+                            className="absolute bg-white rounded-2xl shadow-2xl border border-gray-100"
+                            style={{
+                              width: "clamp(280px, 30vw, 350px)",
+                              height: "clamp(280px, 35vw, 393px)",
+                              padding: "clamp(16px, 3vw, 28px)",
+                              left: isLastAgent
+                                ? "clamp(-350px, -30vw, -370px)"
+                                : "clamp(200px, 25vw, 304px)",
+                              top: "0px",
+                              zIndex: 30,
+                            }}
+                          >
+                            {/* Category Badge */}
+                            <motion.span
+                              className="inline-block bg-[#4F46E5] text-white font-bold px-4 py-2 rounded-lg mb-4"
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.2 }}
+                              style={{
+                                fontSize: "14px",
+                                fontFamily: "Manrope",
+                              }}
+                            >
+                              {agent.category}
+                            </motion.span>
+
+                            {/* Service Title */}
+                            <motion.h3
+                              className="text-gray-900 mb-3"
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.3 }}
+                              style={{
+                                fontFamily: "Manrope",
+                                fontWeight: 800,
+                                fontSize: "22px",
+                                lineHeight: "130%",
+                              }}
+                            >
+                              {agent.service}
+                            </motion.h3>
+
+                            {/* Description */}
+                            <motion.p
+                              className="text-gray-600 mb-6 leading-relaxed"
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.4 }}
+                              style={{
+                                fontFamily: "Manrope",
+                                fontSize: "15px",
+                                lineHeight: "150%",
+                              }}
+                            >
+                              &ldquo;{agent.description}&rdquo;
+                            </motion.p>
+
+                            {/* Audio Player Controls */}
+                            <motion.div
+                              className="flex items-center gap-4"
+                              initial={{ y: 20, opacity: 0 }}
+                              animate={{ y: 0, opacity: 1 }}
+                              transition={{ delay: 0.5 }}
+                            >
+                              <motion.button
+                                className="bg-[#4F46E5] text-white rounded-full flex-shrink-0 flex items-center justify-center hover:bg-indigo-700 transition-colors shadow-lg"
+                                style={{
+                                  width: "48px",
+                                  height: "48px",
+                                }}
+                                whileHover={{ scale: 1.1 }}
+                                whileTap={{ scale: 0.95 }}
+                              >
+                                <svg
+                                  className="w-5 h-5 ml-1"
+                                  viewBox="0 0 20 20"
+                                  fill="currentColor"
                                 >
-                                  {agent.duration}
-                                </span>
+                                  <path d="M6.3 5.17a1.4 1.4 0 00-2.1 1.63L7.6 12l-3.4 5.2a1.4 1.4 0 002.1 1.63L13 12 6.3 5.17z" />
+                                </svg>
+                              </motion.button>
+
+                              <div className="flex-1">
+                                <div className="bg-gray-200 rounded-full h-2 mb-2">
+                                  <motion.div
+                                    className="bg-[#4F46E5] h-2 rounded-full"
+                                    initial={{ width: "0%" }}
+                                    animate={{ width: "25%" }}
+                                    transition={{ duration: 0.8, delay: 0.6 }}
+                                  />
+                                </div>
+                                <div className="flex justify-between text-sm text-gray-500">
+                                  <span
+                                    style={{
+                                      fontFamily: "Manrope",
+                                      fontWeight: 500,
+                                    }}
+                                  >
+                                    0:00
+                                  </span>
+                                  <span
+                                    style={{
+                                      fontFamily: "Manrope",
+                                      fontWeight: 500,
+                                    }}
+                                  >
+                                    {agent.duration}
+                                  </span>
+                                </div>
                               </div>
-                            </div>
+                            </motion.div>
                           </motion.div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </motion.div>
-                );
-              })}
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
