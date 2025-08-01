@@ -32,15 +32,12 @@ const integrationFeatures = [
 const Integrations = () => {
   return (
     <section className="bg-white py-12 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto flex justify-center">
         {/* Main blue container with the specified radial gradient */}
         <div
-          className="rounded-3xl text-white py-16 md:py-20 px-6 lg:px-16 relative"
+          className="text-white pt-1 pb-30 md:pt-16 md:pb-20 px-6 lg:px-16 relative w-[358px] h-[730px] md:w-[1240px] md:h-[600px] md:m-20 rounded-[20px] md:rounded-[24px]"
           style={{
             background: `radial-gradient(ellipse at center, #2525ba 0%, #060482 100%)`,
-            width: "1240px",
-            height: "544px",
-            borderRadius: "24px",
             opacity: 1,
             display: "flex",
             justifyContent: "center",
@@ -48,21 +45,21 @@ const Integrations = () => {
           }}
         >
           <div
-            className="grid grid-cols-1 lg:grid-cols-2 items-center"
+            className="flex flex-col md:grid md:grid-cols-2 items-center text-center md:text-left h-full md:h-auto w-full md:w-auto"
             style={{
-              width: "1041.3895263671875px",
-              height: "444px",
+              width: "100%",
+              maxWidth: "1041.3895263671875px",
+              height: "100%",
               opacity: 1,
-              gap: "80px",
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
+              gap: "0px",
               alignItems: "center",
+              justifyContent: "flex-start",
             }}
           >
             {/* --- Left Column: Text Content --- */}
-            <div className="text-left">
+            <div className="text-center md:text-left px-4 md:px-0 pt-8 pb-0 md:py-0 flex flex-col items-center md:items-start">
               <span
-                className="bg-white text-indigo-700"
+                className="bg-white text-indigo-700 mb-6"
                 style={{
                   width: "auto",
                   height: "42px",
@@ -90,39 +87,79 @@ const Integrations = () => {
               </span>
 
               <h2
-                className="mt-6 text-4xl md:text-5xl font-bold tracking-tight leading-tight"
+                className="text-2xl md:text-5xl font-bold tracking-tight leading-tight text-center md:text-left"
                 style={{
                   fontFamily: "Manrope",
                   fontWeight: 700,
-                  fontSize: "40px",
-                  lineHeight: "130%",
-                  letterSpacing: "0%",
                   textTransform: "uppercase",
                 }}
               >
-                INTEGRATE YOUR VOICE AGENT WITH LEADING TOOLS
+                <span
+                  className="md:hidden"
+                  style={{
+                    fontSize: "24px",
+                    lineHeight: "130%",
+                    letterSpacing: "0%",
+                    textAlign: "center",
+                  }}
+                >
+                  INTEGRATE YOUR VOICE AGENT WITH LEADING TOOLS
+                </span>
+                <span
+                  className="hidden md:inline"
+                  style={{
+                    fontSize: "40px",
+                    lineHeight: "130%",
+                    letterSpacing: "0%",
+                    fontFamily: "Manrope",
+                    fontWeight: 700,
+                  }}
+                >
+                  INTEGRATE YOUR VOICE AGENT WITH LEADING TOOLS
+                </span>
               </h2>
 
               <p
-                className="mt-4 text-lg text-indigo-200 max-w-lg"
+                className="mt-6 md:mt-4 text-sm md:text-lg text-indigo-200 max-w-lg mx-auto md:mx-0 text-center md:text-left"
                 style={{
                   fontFamily: "Manrope",
                   fontWeight: 600,
-                  fontSize: "16px",
-                  lineHeight: "140%",
-                  letterSpacing: "0%",
                 }}
               >
-                Instantly sync your AI assistant with essential business
-                platforms like Google Calendar, GoHighLevel, Calendly, and
-                Webhooks.
+                <span
+                  className="md:hidden"
+                  style={{
+                    fontSize: "14px",
+                    lineHeight: "140%",
+                    letterSpacing: "0%",
+                    textAlign: "center",
+                  }}
+                >
+                  Instantly sync your AI assistant with essential business
+                  platforms like Google Calendar, GoHighLevel, Calendly, and
+                  Webhooks.
+                </span>
+                <span
+                  className="hidden md:inline"
+                  style={{
+                    fontSize: "18px",
+                    lineHeight: "140%",
+                    letterSpacing: "0%",
+                    fontFamily: "Manrope",
+                    fontWeight: 600,
+                  }}
+                >
+                  Instantly sync your AI assistant with essential business
+                  platforms like Google Calendar, GoHighLevel, Calendly, and
+                  Webhooks.
+                </span>
               </p>
 
-              <ul className="mt-6 space-y-3">
+              <ul className="mt-6 md:mt-6 space-y-4 md:space-y-3 text-left md:text-left w-full max-w-sm md:max-w-none mx-auto md:mx-0">
                 {integrationFeatures.map((feature, index) => (
-                  <li key={index} className="flex items-center">
+                  <li key={index} className="flex items-center justify-start">
                     <CheckIcon />
-                    <span className="ml-4 text-md text-indigo-100">
+                    <span className="ml-4 text-md text-indigo-100 text-left">
                       {feature}
                     </span>
                   </li>
@@ -130,9 +167,10 @@ const Integrations = () => {
               </ul>
             </div>
 
-            {/* --- Right Column: Image --- */}
+            {/* --- Right Column: Image - Desktop Only --- */}
             {/* Shadow div */}
             <div
+              className="hidden md:block"
               style={{
                 width: "397.1428527832031px",
                 height: "293.3707580566406px",
@@ -147,7 +185,7 @@ const Integrations = () => {
             ></div>
 
             <div
-              className="relative"
+              className="relative hidden md:block"
               style={{
                 width: "398.3995056152344px",
                 height: "305.8546142578125px",
@@ -168,6 +206,27 @@ const Integrations = () => {
                 objectFit="contain"
                 className="rounded-xl"
               />
+            </div>
+
+            {/* --- Mobile Image at Bottom --- */}
+            <div className="md:hidden mt-8 w-full flex justify-center">
+              <div
+                className="relative"
+                style={{
+                  width: "280px",
+                  height: "200px",
+                  borderRadius: "12px",
+                  overflow: "hidden",
+                }}
+              >
+                <Image
+                  src="/images/integrate.png"
+                  alt="Integration dashboard showing connections to various apps"
+                  layout="fill"
+                  objectFit="contain"
+                  className="rounded-xl"
+                />
+              </div>
             </div>
           </div>
         </div>
