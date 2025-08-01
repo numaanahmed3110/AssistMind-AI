@@ -38,13 +38,18 @@ const TestimonialCard = ({
   title,
   image,
 }: (typeof testimonials)[0]) => (
-  <div className="flex-shrink-0 w-[380px] bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mx-4">
+  <div
+    className="flex-shrink-0 w-[326px] md:w-[380px] bg-white rounded-[16px] md:rounded-2xl shadow-lg border border-gray-100 pt-7 pb-1 px-4 md:p-8 mx-0 md:mx-4 h-[212px] md:h-auto"
+    style={{
+      background: "#FFFFFF",
+      gap: "10px",
+    }}
+  >
     <p
-      className="text-gray-700 h-32"
+      className="text-gray-700 h-auto md:h-32 text-sm md:text-lg"
       style={{
         fontFamily: "Manrope",
         fontWeight: 500,
-        fontSize: "18px",
         lineHeight: "140%",
         letterSpacing: "0%",
       }}
@@ -79,10 +84,10 @@ const Testimonials = () => {
 
   return (
     <section
-      className="py-20 md:py-24 overflow-hidden"
+      className="pt-10 pb-5 md:py-24 overflow-hidden"
       // REFINEMENT: Applying the exact light gradient background
       style={{
-        background: "linear-gradient(180deg, #F7F8FF 0%, #FFFFFF 100%)",
+        background: "linear-gradient(180deg, #E6E8FF 0%, #FFFFFF 87.57%)",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,13 +120,23 @@ const Testimonials = () => {
           >
             Testimonials
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
-            WHAT OUR CUSTOMERS ARE SAYING
+          <h2
+            className="mt-4 text-2xl md:text-5xl font-bold text-gray-900 tracking-tight"
+            style={{
+              fontFamily: "Manrope",
+              fontWeight: 700,
+              letterSpacing: "0%",
+              textAlign: "center",
+            }}
+          >
+            <span className="text-2xl leading-[130%] md:text-5xl md:leading-normal">
+              WHAT OUR CUSTOMERS ARE SAYING
+            </span>
           </h2>
         </div>
 
-        {/* Carousel Container */}
-        <div className="mt-16 relative overflow-hidden">
+        {/* Desktop: Carousel */}
+        <div className="hidden md:block mt-16 relative overflow-hidden">
           <motion.div
             className="flex"
             animate={{
@@ -149,8 +164,15 @@ const Testimonials = () => {
           ></div>
         </div>
 
-        {/* Pagination Dots */}
-        <div className="mt-8 flex justify-center items-center space-x-2">
+        {/* Mobile: Vertical Stack */}
+        <div className="md:hidden mt-8 space-y-6 flex flex-col items-center">
+          {testimonials.map((testimonial, index) => (
+            <TestimonialCard key={index} {...testimonial} />
+          ))}
+        </div>
+
+        {/* Pagination Dots - Desktop Only */}
+        <div className="hidden md:flex mt-8 justify-center items-center space-x-2">
           <motion.div
             className="w-2 h-2 rounded-full"
             animate={{

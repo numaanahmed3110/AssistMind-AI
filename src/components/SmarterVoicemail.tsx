@@ -88,11 +88,11 @@ const SmarterVoicemail = () => {
               {features.map((feature, index) => (
                 <li
                   key={index}
-                  className="flex items-start justify-end md:justify-start"
+                  className="flex items-start justify-start md:justify-start"
                 >
                   <CheckIcon />
                   <span
-                    className="ml-4 text-gray-700 text-right md:text-left text-base md:text-lg"
+                    className="ml-2 md:ml-4 text-gray-700 text-left text-base md:text-lg"
                     style={{
                       fontFamily: "Manrope",
                       fontWeight: 600,
@@ -108,19 +108,9 @@ const SmarterVoicemail = () => {
           </div>
 
           {/* --- Right Column: Image Composition --- */}
-          <div className="relative h-[500px] md:h-[500px]">
+          <div className="relative h-[230px] md:h-[500px]">
             {/* Base Dashboard Image - Perfect rectangular container */}
-            <div
-              className="absolute bg-white rounded-xl shadow-2xl overflow-hidden"
-              style={{
-                width: "661.64px",
-                height: "464.18px",
-                left: "15px",
-                top: "0px",
-                opacity: 1,
-                transform: "rotate(0deg)",
-              }}
-            >
+            <div className="absolute bg-white rounded-xl shadow-2xl overflow-hidden w-[337px] h-[236px] left-[10px] top-[-20px] md:w-[662px] md:h-[464px] md:left-[15px] md:top-0">
               <Image
                 src="/images/call-log-dashboard.png"
                 alt="AssistMind AI Call Log Dashboard"
@@ -131,13 +121,13 @@ const SmarterVoicemail = () => {
               />
             </div>
             {/* Call Detail Popup Overlay - Positioned as in reference */}
-            <div className="absolute bottom-4 left--9 w-[65%] max-w-[380px]">
+            <div className="absolute w-[203px] h-[126px] top-[120px] left-0 rounded-[8px] shadow-2xl md:w-[65%] md:max-w-[380px] md:h-[170px] md:bottom-4 md:top-auto md:left-[-36px] md:rounded-xl">
               <Image
                 src="/images/call-detail-popup.png"
                 alt="Call detail popup with audio transcript"
-                width={380}
-                height={170}
-                className="rounded-xl shadow-2xl"
+                layout="fill"
+                objectFit="contain"
+                className="rounded-[8px] md:rounded-xl "
               />
             </div>
           </div>
