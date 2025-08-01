@@ -15,9 +15,9 @@ import Testimonials from "@/components/Testimonials";
 
 export default function HomePage() {
   return (
-    <div className="bg-[#F9FAFB] min-h-screen">
+    <div className="bg-[#F9FAFB] min-h-screen overflow-x-hidden">
       <Navbar />
-      <div className="bg-white">
+      <div className="bg-white overflow-x-hidden">
         <section id="hero">
           <Hero />
         </section>

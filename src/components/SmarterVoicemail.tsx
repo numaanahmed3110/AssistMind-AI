@@ -35,56 +35,69 @@ const SmarterVoicemail = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-16 items-center">
           {/* --- Left Column: Text Content --- */}
-          <div className="text-left">
-            <span
-              className="bg-indigo-100 text-indigo-700"
+          <div className="text-center md:text-left">
+            <div className="flex justify-center md:justify-start">
+              <span
+                className="bg-indigo-100 text-indigo-700"
+                style={{
+                  width: "auto",
+                  height: "45px",
+                  opacity: 1,
+                  gap: "10px",
+                  borderRadius: "76px",
+                  borderWidth: "2px",
+                  borderColor: "#6366f1",
+                  borderStyle: "solid",
+                  paddingTop: "10px",
+                  paddingRight: "25px",
+                  paddingBottom: "10px",
+                  paddingLeft: "25px",
+                  fontFamily: "Manrope",
+                  fontWeight: 700,
+                  fontSize: "14px",
+                  lineHeight: "21px",
+                  letterSpacing: "0%",
+                  textAlign: "center",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                Talk To Work Smarter
+              </span>
+            </div>
+
+            <h2
+              className="mt-8 text-gray-900 tracking-tight leading-tight text-center md:text-left"
               style={{
-                width: "auto",
-                height: "40px",
-                opacity: 1,
-                borderRadius: "76px",
-                borderWidth: "2px",
-                borderColor: "#6366f1",
-                borderStyle: "solid",
-                paddingTop: "16px",
-                paddingRight: "53px",
-                paddingBottom: "16px",
-                paddingLeft: "53px",
                 fontFamily: "Manrope",
                 fontWeight: 700,
-                fontSize: "19px",
-                lineHeight: "130%",
                 letterSpacing: "0%",
-                textAlign: "center",
-                display: "inline-flex",
-                alignItems: "center",
-                justifyContent: "center",
               }}
             >
-              Talk To Work Smarter
-            </span>
-
-            <h2 className="mt-8 text-2xl md:text-4xl font-bold text-gray-900 tracking-tight leading-tight">
-              SMARTER THAN A VOICEMAIL.
-              <br />
-              CHEAPER THAN A
-              <br />
-              RECEPTIONIST.
+              <span className="text-2xl leading-[130%] md:text-4xl md:leading-tight">
+                SMARTER THAN A VOICEMAIL.
+                <br />
+                CHEAPER THAN A
+                <br />
+                RECEPTIONIST.
+              </span>
             </h2>
 
             <ul className="mt-10 space-y-6">
               {features.map((feature, index) => (
-                <li key={index} className="flex items-start">
+                <li
+                  key={index}
+                  className="flex items-start justify-end md:justify-start"
+                >
                   <CheckIcon />
                   <span
-                    className="ml-4 text-gray-700"
+                    className="ml-4 text-gray-700 text-right md:text-left text-base md:text-lg"
                     style={{
                       fontFamily: "Manrope",
                       fontWeight: 600,
-                      fontSize: "18px",
-                      lineHeight: "140%",
+                      lineHeight: "24px",
                       letterSpacing: "0%",
-                      textAlign: "center",
                     }}
                   >
                     {feature}

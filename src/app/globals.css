@@ -29,6 +29,7 @@ html {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
   scroll-behavior: smooth; /* Enable smooth scrolling globally */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 body {
@@ -36,6 +37,7 @@ body {
   color: var(--foreground);
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
 /* Premium Marquee Animation */
