@@ -84,7 +84,7 @@ const Testimonials = () => {
 
   return (
     <section
-      className="pt-10 pb-5 md:py-24 overflow-hidden"
+      className="pt-10 pb-5 md:pt-12 md:pb-5 overflow-hidden"
       // REFINEMENT: Applying the exact light gradient background
       style={{
         background: "linear-gradient(180deg, #E6E8FF 0%, #FFFFFF 87.57%)",
@@ -163,6 +163,13 @@ const Testimonials = () => {
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}
+        </div>
+
+        {/* Pagination Dots - Mobile */}
+        <div className="md:hidden flex mt-8 justify-center items-center space-x-2">
+          <div className="w-2.5 h-2.5 rounded-full bg-indigo-600"></div>
+          <div className="w-2 h-2 rounded-full bg-gray-300"></div>
+          <div className="w-2 h-2 rounded-full bg-gray-300"></div>
         </div>
 
         {/* Pagination Dots - Desktop Only */}

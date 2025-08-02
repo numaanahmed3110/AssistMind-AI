@@ -117,7 +117,7 @@ const comparisonData = [
 const FeatureComparison = () => {
   return (
     <section className="bg-gray-50 pt-8  md:py-8">
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <span
             className="bg-indigo-100 text-indigo-700"

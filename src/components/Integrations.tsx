@@ -32,10 +32,10 @@ const integrationFeatures = [
 const Integrations = () => {
   return (
     <section className="bg-white py-12 px-4 sm:px-6">
-      <div className="max-w-7xl mx-auto flex justify-center">
+      <div className="w-full mx-auto flex justify-center">
         {/* Main blue container with the specified radial gradient */}
         <div
-          className="text-white py-12 md:pt-16 md:pb-20 px-6 lg:px-16 relative w-[358px] min-h-fit md:w-[1240px] md:h-[600px] md:m-20 rounded-[20px] md:rounded-[24px]"
+          className="text-white py-12 pb-16 md:pt-16 md:pb-20 px-6 lg:px-16 relative w-[358px] min-h-fit md:w-[1200px] md:h-[600px] md:m-20 rounded-[20px] md:rounded-[24px]"
           style={{
             background: `radial-gradient(ellipse at center, #2525ba 0%, #060482 100%)`,
             opacity: 1,
@@ -48,7 +48,6 @@ const Integrations = () => {
             className="flex flex-col md:grid md:grid-cols-2 items-center text-center md:text-left h-full md:h-auto w-full md:w-auto"
             style={{
               width: "100%",
-              maxWidth: "1041.3895263671875px",
               height: "100%",
               opacity: 1,
               gap: "0px",
@@ -209,9 +208,24 @@ const Integrations = () => {
             </div>
 
             {/* --- Mobile Image at Bottom --- */}
-            <div className="md:hidden mt-8 w-full flex justify-center">
+            <div className="md:hidden mt-8 w-full flex justify-center relative">
+              {/* Mobile Shadow div */}
               <div
-                className="relative"
+                className="absolute"
+                style={{
+                  width: "280px",
+                  height: "200px",
+                  opacity: 1,
+                  top: "23px",
+                  left: "5px",
+                  borderRadius: "12px",
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                  zIndex: 1,
+                }}
+              ></div>
+
+              <div
+                className="relative z-10 ml-[10px]"
                 style={{
                   width: "280px",
                   height: "200px",

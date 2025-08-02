@@ -110,7 +110,7 @@ const SmarterVoicemail = () => {
           {/* --- Right Column: Image Composition --- */}
           <div className="relative min-h-fit pb-4 md:h-[500px]">
             {/* Base Dashboard Image - Perfect rectangular container */}
-            <div className="relative bg-white rounded-xl shadow-2xl overflow-hidden w-[337px] h-[236px] mx-auto md:absolute md:w-[662px] md:h-[464px] md:left-[15px] md:top-0">
+            <div className="relative bg-white rounded-xl shadow-2xl overflow-hidden w-[337px] h-[236px] ml-[15px] md:ml-0 mx-auto md:absolute md:w-[662px] md:h-[464px] md:left-[20px] md:top-0">
               <Image
                 src="/images/call-log-dashboard.png"
                 alt="AssistMind AI Call Log Dashboard"
@@ -121,12 +121,12 @@ const SmarterVoicemail = () => {
               />
             </div>
             {/* Call Detail Popup Overlay - Positioned as in reference */}
-            <div className="relative w-[203px] h-[126px] mx-auto mt-4 rounded-[8px] shadow-2xl md:absolute md:w-[65%] md:max-w-[380px] md:h-[170px] md:bottom-4 md:top-auto md:left-[-36px] md:rounded-xl">
+            <div className="absolute w-[203px] h-[126px] bottom-[-20px] left-[-5px] rounded-[8px] shadow-2xl md:absolute md:w-[320px] md:h-[200px] md:bottom-2 md:top-auto md:left-[-10px] md:rounded-xl">
               <Image
                 src="/images/call-detail-popup.png"
                 alt="Call detail popup with audio transcript"
                 layout="fill"
-                objectFit="contain"
+                objectFit="fill"
                 className="rounded-[8px] md:rounded-xl "
               />
             </div>
