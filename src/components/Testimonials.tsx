@@ -39,7 +39,7 @@ const TestimonialCard = ({
   image,
 }: (typeof testimonials)[0]) => (
   <div
-    className="flex-shrink-0 w-[326px] md:w-[380px] bg-white rounded-[16px] md:rounded-2xl shadow-lg border border-gray-100 pt-7 pb-1 px-4 md:p-8 mx-0 md:mx-4 h-[212px] md:h-auto"
+    className="flex-shrink-0 w-[326px] md:w-[380px] bg-white rounded-[16px] md:rounded-2xl shadow-lg border border-gray-100 p-6 md:p-8 mx-0 md:mx-4 min-h-fit"
     style={{
       background: "#FFFFFF",
       gap: "10px",
@@ -154,14 +154,8 @@ const Testimonials = () => {
             ))}
           </motion.div>
           {/* Fades on the edges to enhance the seamless effect */}
-          <div
-            className="absolute top-0 bottom-0 left-0 w-32 h-full bg-gradient-to-r from-white via-white/90 to-transparent pointer-events-none z-10"
-            style={{ height: "100%", minHeight: "280px" }}
-          ></div>
-          <div
-            className="absolute top-0 bottom-0 right-0 w-32 h-full bg-gradient-to-l from-white via-white/90 to-transparent pointer-events-none z-10"
-            style={{ height: "100%", minHeight: "280px" }}
-          ></div>
+          <div className="absolute top-0 bottom-0 left-0 w-32 h-full bg-gradient-to-r from-white via-white/90 to-transparent pointer-events-none z-10"></div>
+          <div className="absolute top-0 bottom-0 right-0 w-32 h-full bg-gradient-to-l from-white via-white/90 to-transparent pointer-events-none z-10"></div>
         </div>
 
         {/* Mobile: Vertical Stack */}

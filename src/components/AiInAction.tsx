@@ -84,7 +84,7 @@ const AiInAction = () => {
   };
 
   return (
-    <section className="bg-white pt-2 pb-8 md:pt-6 md:pb-15 overflow-x-hidden">
+    <section className="bg-white pt-2 pb-6 md:pt-6 md:pb-15 overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-x-hidden">
         {/* --- Top Section: Trusted by Companies --- */}
         <div className="text-center">
@@ -200,7 +200,7 @@ const AiInAction = () => {
         </div>
 
         {/* --- Main Content: Hear AI in Action --- */}
-        <div className="mt-24 text-center flex justify-center">
+        <div className="mt-16 md:mt-24 text-center flex justify-center">
           <span
             className="bg-indigo-100 text-indigo-700"
             style={{
@@ -246,11 +246,11 @@ const AiInAction = () => {
           </h2>
 
           {/* Agent Cards Grid with Sliding Animation */}
-          <div className="mt-5 relative overflow-visible max-w-7xl mx-auto h-[500px] lg:h-[450px] md:h-[400px] sm:h-auto pb-16">
-            <div className="flex items-start justify-center gap-12 lg:gap-8 md:gap-6 sm:gap-4 h-full md:overflow-x-visible">
+          <div className="mt-5 relative overflow-visible max-w-7xl mx-auto lg:h-[450px] md:h-[400px] pb-4 md:pb-16">
+            <div className="flex items-start justify-center gap-12 lg:gap-8 md:gap-6 sm:gap-4 md:h-full md:overflow-x-visible">
               {isMobile ? (
                 // Mobile: Horizontal scrollable carousel with one main image and partial side images
-                <div className="w-full pb-8 pt-4">
+                <div className="w-full py-4 px-2">
                   <div
                     className="overflow-x-auto overflow-y-visible scrollbar-hide"
                     onScroll={handleScroll}
@@ -260,7 +260,7 @@ const AiInAction = () => {
                     }}
                   >
                     <div
-                      className="flex gap-8 px-12 py-2"
+                      className="flex gap-6 px-8 py-2"
                       style={{ width: "max-content" }}
                     >
                       {agents.map((agent, index) => (
@@ -273,18 +273,12 @@ const AiInAction = () => {
                           <div
                             className="relative flex-shrink-0 bg-gray-50"
                             style={{
-                              width: "206px",
-                              height: "281px",
+                              width: "180px",
+                              height: "240px",
                               opacity: 1,
                               gap: "10px",
-                              paddingTop: "16px",
-                              paddingRight: "37px",
-                              paddingBottom: "16px",
-                              paddingLeft: "37px",
-                              borderTopRightRadius: "16px",
-                              borderBottomRightRadius: "16px",
-                              borderTopLeftRadius: "16px",
-                              borderBottomLeftRadius: "16px",
+                              padding: "12px",
+                              borderRadius: "16px",
                             }}
                           >
                             <Image
@@ -338,9 +332,9 @@ const AiInAction = () => {
                                   y: { duration: 0.3 },
                                   scale: { duration: 0.3 },
                                 }}
-                                className="mt-4 bg-white rounded-2xl shadow-lg border border-gray-100 p-4"
+                                className="mt-3 bg-white rounded-2xl shadow-lg border border-gray-100 p-3"
                                 style={{
-                                  width: "206px",
+                                  width: "180px",
                                   opacity: 1,
                                 }}
                               >

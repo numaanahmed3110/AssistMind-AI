@@ -49,7 +49,7 @@ const HowItWorks = () => {
       <div className="max-w-7xl mx-auto">
         {/* Updated container with exact spacing and proportions */}
         <div
-          className="rounded-[20px] md:rounded-[2rem] text-white text-center py-10 md:py-16 px-8 lg:px-12 w-[358px] md:w-auto h-[1050px] md:h-auto mx-auto"
+          className="rounded-[20px] md:rounded-[2rem] text-white text-center py-10 md:py-16 px-8 lg:px-12 w-[358px] md:w-auto min-h-fit mx-auto"
           style={{
             background: `radial-gradient(ellipse at center, #2525ba 0%, #060482 100%)`,
           }}
@@ -100,9 +100,9 @@ const HowItWorks = () => {
           <div className="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-y-0 lg:gap-y-8 lg:gap-x-8 items-start justify-center">
             {steps.map((step, index) => (
               <React.Fragment key={index}>
-                <div className="relative text-center px-2 flex justify-center">
+                <div className="relative text-center px-2 flex justify-center mb-8 lg:mb-0">
                   <div
-                    className="bg-white text-gray-900 shadow-lg flex flex-col items-center w-[320px] h-[217px] md:h-[237px]"
+                    className="bg-white text-gray-900 shadow-lg flex flex-col items-center w-[320px] min-h-fit py-6 md:h-[237px]"
                     style={{
                       opacity: 1,
                       gap: "12px",

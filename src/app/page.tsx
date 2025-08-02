@@ -42,7 +42,7 @@ export default function HomePage() {
         <section id="pricing">
           <Pricing />
         </section>
-        <section id="enterprise">
+        <section id="enterprise" className="hidden md:block">
           <EnterpriseCta />
         </section>
         <section id="faq">

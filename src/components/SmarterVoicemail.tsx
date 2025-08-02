@@ -31,7 +31,7 @@ const CheckIcon = () => (
 
 const SmarterVoicemail = () => {
   return (
-    <section className="bg-white py-10 md:py-10 overflow-hidden">
+    <section className="bg-white pb-10 pt-5 md:py-10 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-16 items-center">
           {/* --- Left Column: Text Content --- */}
@@ -108,9 +108,9 @@ const SmarterVoicemail = () => {
           </div>
 
           {/* --- Right Column: Image Composition --- */}
-          <div className="relative h-[230px] md:h-[500px]">
+          <div className="relative min-h-fit pb-4 md:h-[500px]">
             {/* Base Dashboard Image - Perfect rectangular container */}
-            <div className="absolute bg-white rounded-xl shadow-2xl overflow-hidden w-[337px] h-[236px] left-[10px] top-[-20px] md:w-[662px] md:h-[464px] md:left-[15px] md:top-0">
+            <div className="relative bg-white rounded-xl shadow-2xl overflow-hidden w-[337px] h-[236px] mx-auto md:absolute md:w-[662px] md:h-[464px] md:left-[15px] md:top-0">
               <Image
                 src="/images/call-log-dashboard.png"
                 alt="AssistMind AI Call Log Dashboard"
@@ -121,7 +121,7 @@ const SmarterVoicemail = () => {
               />
             </div>
             {/* Call Detail Popup Overlay - Positioned as in reference */}
-            <div className="absolute w-[203px] h-[126px] top-[120px] left-0 rounded-[8px] shadow-2xl md:w-[65%] md:max-w-[380px] md:h-[170px] md:bottom-4 md:top-auto md:left-[-36px] md:rounded-xl">
+            <div className="relative w-[203px] h-[126px] mx-auto mt-4 rounded-[8px] shadow-2xl md:absolute md:w-[65%] md:max-w-[380px] md:h-[170px] md:bottom-4 md:top-auto md:left-[-36px] md:rounded-xl">
               <Image
                 src="/images/call-detail-popup.png"
                 alt="Call detail popup with audio transcript"

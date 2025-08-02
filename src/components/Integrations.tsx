@@ -35,7 +35,7 @@ const Integrations = () => {
       <div className="max-w-7xl mx-auto flex justify-center">
         {/* Main blue container with the specified radial gradient */}
         <div
-          className="text-white pt-1 pb-30 md:pt-16 md:pb-20 px-6 lg:px-16 relative w-[358px] h-[730px] md:w-[1240px] md:h-[600px] md:m-20 rounded-[20px] md:rounded-[24px]"
+          className="text-white py-12 md:pt-16 md:pb-20 px-6 lg:px-16 relative w-[358px] min-h-fit md:w-[1240px] md:h-[600px] md:m-20 rounded-[20px] md:rounded-[24px]"
           style={{
             background: `radial-gradient(ellipse at center, #2525ba 0%, #060482 100%)`,
             opacity: 1,
