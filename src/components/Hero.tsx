@@ -6,12 +6,10 @@ const Hero = () => {
   return (
     <main className="px-2 md:px-6 lg:px-12 pt-0 md:pt-7 pb-8 md:pb-20">
       {/* Mobile View */}
-      <div className="md:hidden flex justify-center items-start pt-4">
+      <div className="md:hidden flex justify-center items-start pt-4 pb-8">
         <div
-          className="text-center text-white relative overflow-hidden"
+          className="text-center text-white relative overflow-hidden w-[358px] min-h-fit py-8 px-4"
           style={{
-            width: "358px",
-            height: "527px",
             borderRadius: "16px",
             background: `radial-gradient(ellipse at center, #2525ba 0%, #060482 100%)`,
           }}
@@ -30,7 +28,7 @@ const Hero = () => {
 
           {/* Mobile Heading */}
           <h1
-            className="tracking-tight relative z-10 text-white px-4 pt-8"
+            className="tracking-tight relative z-10 text-white mb-6"
             style={{
               fontFamily: "Manrope",
               fontWeight: 800,
@@ -45,7 +43,7 @@ const Hero = () => {
           </h1>
 
           {/* Mobile Action Buttons */}
-          <div className="mt-6 flex flex-col gap-3 relative z-10 px-4">
+          <div className="flex flex-col gap-3 relative z-10 mb-8">
             <button
               className="bg-[#4F46E5] text-white hover:bg-indigo-700 transition-colors shadow-lg w-full"
               style={{
@@ -89,21 +87,13 @@ const Hero = () => {
           </div>
 
           {/* Mobile Dashboard Image */}
-          <div
-            className="absolute"
-            style={{
-              width: "350px",
-              height: "390px",
-              top: "230px",
-              left: "5px",
-            }}
-          >
+          <div className="relative w-full max-w-[350px] mx-auto">
             <Image
               src="/mobile/dashboard1.png"
               alt="AssistMind AI Analytics Dashboard"
               width={370}
               height={390}
-              className="shadow-2xl w-full h-full object-contain rounded-lg"
+              className="shadow-2xl w-full h-auto object-contain rounded-lg"
               priority
             />
           </div>

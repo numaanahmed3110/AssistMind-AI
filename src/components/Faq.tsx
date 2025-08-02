@@ -1,7 +1,7 @@
 // src/components/Faq.tsx
 "use client"; // This is an interactive component
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 // --- Reusable Icon Components ---
@@ -104,10 +104,12 @@ const AccordionItem = ({
   item,
   isOpen,
   onClick,
+  isMobile,
 }: {
   item: (typeof faqData)[0];
   isOpen: boolean;
   onClick: () => void;
+  isMobile: boolean;
 }) => {
   return (
     <div className="border-b border-gray-200">
@@ -115,10 +117,28 @@ const AccordionItem = ({
         onClick={onClick}
         className="w-full flex justify-between items-center text-left py-6"
       >
-        <span className="text-lg font-medium text-gray-800">
+        <span
+          className="font-semibold text-gray-800 text-base md:text-lg md:font-medium"
+          style={{
+            fontFamily: "Manrope",
+            fontWeight: 600,
+            fontSize: "16px",
+            lineHeight: "24px",
+            letterSpacing: "0%",
+          }}
+        >
           {item.question}
         </span>
-        <div className="w-8 h-8 flex-shrink-0 rounded-full border-2 border-gray-200 flex items-center justify-center">
+        <div
+          className="flex-shrink-0 rounded-full border border-gray-200 flex items-center justify-center w-[54px] h-[54px] md:w-8 md:h-8"
+          style={{
+            borderRadius: "50px",
+            padding: isMobile ? "24px 15px" : undefined,
+            borderWidth: "1px",
+            gap: "10px",
+            opacity: 1,
+          }}
+        >
           {isOpen ? <MinusIcon /> : <PlusIcon />}
         </div>
       </button>
@@ -136,7 +156,18 @@ const AccordionItem = ({
             transition={{ duration: 0.3, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="pb-6 pr-10 text-gray-600">{item.answer}</p>
+            <p
+              className="pb-6 pr-10 text-gray-600"
+              style={{
+                fontFamily: "Manrope",
+                fontWeight: 600,
+                fontSize: "16px",
+                lineHeight: "24px",
+                letterSpacing: "0%",
+              }}
+            >
+              {item.answer}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -146,15 +177,35 @@ const AccordionItem = ({
 
 const Faq = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if device is mobile
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   return (
     <section
-      className="py-10 md:py-8 pb-18 md:pb-20"
+      className="pt-2 md:py-8 pb-2 md:pb-20"
       style={{
         background: "linear-gradient(180deg, #F9FAFF 0%, #FFFFFF 100%)",
       }}
     >
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        className="mx-auto px-4 sm:px-6 lg:px-8 max-w-sm md:max-w-4xl"
+        style={{
+          opacity: 1,
+          gap: "20px",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <div className="text-center">
           <span
             className="bg-indigo-100 text-indigo-700"
@@ -184,18 +235,27 @@ const Faq = () => {
           >
             FAQ
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
+          <h2
+            className="mt-5 font-bold text-gray-900 tracking-tight text-[24px] leading-[130%] md:text-5xl md:leading-normal"
+            style={{
+              fontFamily: "Manrope",
+              fontWeight: 700,
+              letterSpacing: "0%",
+              textAlign: "center",
+            }}
+          >
             Frequently Asked Questions
           </h2>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-8 pb-8">
           {faqData.map((item, index) => (
             <AccordionItem
               key={index}
               item={item}
               isOpen={openIndex === index}
               onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              isMobile={isMobile}
             />
           ))}
         </div>

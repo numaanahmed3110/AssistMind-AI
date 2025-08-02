@@ -24,7 +24,7 @@ const Footer = () => {
   return (
     // REFINEMENT: Set the exact dark blue background color
     <footer style={{ backgroundColor: "#0D1127" }}>
-      <div className="max-w-7xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto py-15 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-base">
           {/* Column 1: Logo and Description */}
           <div className="col-span-1">
@@ -43,8 +43,8 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div className="md:ml-8">
+          {/* Column 2: Quick Links - Hidden on mobile */}
+          <div className="md:ml-8 hidden md:block">
             <h3 className="font-semibold text-white tracking-wide mb-4 text-sm">
               Quick links
             </h3>
@@ -62,8 +62,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 3: More Quick Links */}
-          <div>
+          {/* Column 3: More Quick Links - Hidden on mobile */}
+          <div className="hidden md:block">
             <h3 className="font-semibold text-white tracking-wide mb-4 text-sm">
               Quick links
             </h3>
@@ -81,8 +81,8 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Column 4: Contact Us */}
-          <div>
+          {/* Column 4: Contact Us - Hidden on mobile */}
+          <div className="hidden md:block">
             <h3 className="font-semibold text-white tracking-wide mb-4 text-sm">
               Contact us
             </h3>
