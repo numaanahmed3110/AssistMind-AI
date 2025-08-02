@@ -1,14 +1,26 @@
+"use client";
 // src/components/Pricing.tsx
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // --- Reusable Checkmark Icon ---
 // Styled to match the design's checkmarks within the feature lists.
-const CheckIcon = ({ isProPlan }: { isProPlan?: boolean }) => (
+const CheckIcon = ({
+  isProPlan,
+  isMobile,
+}: {
+  isProPlan?: boolean;
+  isMobile?: boolean;
+}) => (
   <svg
-    className="w-6 h-6 flex-shrink-0"
+    className="flex-shrink-0"
+    width={isMobile ? "24" : "24"}
+    height={isMobile ? "24" : "24"}
     viewBox="0 0 24 24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    style={{
+      opacity: 1,
+    }}
   >
     <circle
       cx="12"
@@ -33,11 +45,16 @@ const pricingPlans = [
     price: "$10",
     description: "Our most popular plan.",
     features: [
-      "Access to basic features",
-      "Basic reporting and analytics",
-      "Up to 10 individual users",
-      "20 GB individual data",
-      "Basic chat and email support",
+      "Minutes included 250",
+      "Price per extra Minute 0.4",
+      "AI Agent trained on your business",
+      "Email & SMS call alerts",
+      "Simultaneous call handling",
+      "Choose voice & tone",
+      "Free onboarding & setup",
+      "Appointment Booking",
+      "Call Transfer to Human",
+      "Upload Training Docs",
     ],
     isPopular: true,
     isPro: false,
@@ -47,11 +64,16 @@ const pricingPlans = [
     price: "$50",
     description: "Growing teams up to 20 users.",
     features: [
-      "200+ integrations",
-      "Advanced reporting and analytics",
-      "Up to 20 individual users",
-      "200 GB individual data",
-      "Priority chat and email support",
+      "Minutes included 1250",
+      "Price per extra Minute 0.3",
+      "AI Agent trained on your business",
+      "Email & SMS call alerts",
+      "Simultaneous call handling",
+      "Choose voice & tone",
+      "Free onboarding & setup",
+      "Appointment Booking",
+      "Call Transfer to Human",
+      "Upload Training Docs",
     ],
     isPopular: false,
     isPro: true,
@@ -61,11 +83,16 @@ const pricingPlans = [
     price: "$99",
     description: "Advanced features + unlimited users.",
     features: [
-      "Advanced custom fields",
-      "Audit log and data history",
-      "Unlimited individual users",
-      "Unlimited individual data",
-      "Personalized + priority service",
+      "Minutes included 1250",
+      "Price per extra Minute 0.3",
+      "AI Agent trained on your business",
+      "Email & SMS call alerts",
+      "Simultaneous call handling",
+      "Choose voice & tone",
+      "Free onboarding & setup",
+      "Appointment Booking",
+      "Call Transfer to Human",
+      "Upload Training Docs",
     ],
     isPopular: false,
     isPro: false,
@@ -73,34 +100,46 @@ const pricingPlans = [
 ];
 
 const Pricing = () => {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   return (
     <section
-      className="py-20 md:py-24"
+      className="pt-1 pb-20 md:py-24"
       style={{
         background: "linear-gradient(180deg, #F9FAFF 0%, #FFFFFF 100%)",
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4  sm:px-6 lg:px-8">
         <div className="text-center">
           <span
             className="bg-indigo-100 text-indigo-700"
             style={{
               width: "auto",
-              height: "45px",
+              height: "42px",
               opacity: 1,
-              gap: "10px",
               borderRadius: "76px",
               borderWidth: "2px",
               borderColor: "#6366f1",
               borderStyle: "solid",
-              paddingTop: "10px",
-              paddingRight: "25px",
-              paddingBottom: "10px",
-              paddingLeft: "25px",
+              paddingTop: "16px",
+              paddingRight: "53px",
+              paddingBottom: "16px",
+              paddingLeft: "53px",
               fontFamily: "Manrope",
               fontWeight: 700,
-              fontSize: "14px",
-              lineHeight: "21px",
+              fontSize: "19px",
+              lineHeight: "130%",
               letterSpacing: "0%",
               textAlign: "center",
               display: "inline-flex",
@@ -110,28 +149,54 @@ const Pricing = () => {
           >
             Pricing
           </span>
-          <h2 className="mt-4 text-4xl md:text-5xl font-bold text-gray-900 tracking-tight uppercase">
-            BUILT TO AMPLIFY THE WAY YOU WORK
+          <h2 className="mt-5 text-gray-900 tracking-tight uppercase">
+            <span
+              className="block text-2xl font-bold md:hidden"
+              style={{
+                fontFamily: "Manrope",
+                fontWeight: 700,
+                fontSize: "24px",
+                lineHeight: "130%",
+                letterSpacing: "0%",
+                textAlign: "center",
+              }}
+            >
+              BUILT TO AMPLIFY THE WAY YOU WORK
+            </span>
+            <span className="hidden md:block text-4xl md:text-5xl font-bold">
+              BUILT TO AMPLIFY THE WAY YOU WORK
+            </span>
           </h2>
         </div>
 
         {/* Pricing Cards Grid */}
-        <div className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+        <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start justify-items-center">
           {pricingPlans.map((plan) => (
             <div
               key={plan.name}
-              className={`rounded-2xl p-8 h-full flex flex-col relative cursor-pointer transform transition-transform duration-300 ease-out hover:scale-105 active:scale-98 ${
+              className={`rounded-2xl md:rounded-2xl p-8 h-full flex flex-col relative cursor-pointer transform transition-transform duration-300 ease-out hover:scale-105 active:scale-98 ${
                 plan.isPro
                   ? "text-white shadow-2xl"
                   : "bg-white shadow-lg border border-gray-200"
               }`}
-              style={
-                plan.isPro
+              style={{
+                // Mobile-specific styles
+                width: isMobile ? "358px" : "auto",
+                height: isMobile ? "auto" : "auto",
+                borderRadius: isMobile ? "12px" : undefined,
+                border: isMobile ? "1px solid #00000014" : undefined,
+                boxShadow: isMobile
+                  ? "0px 2px 2px -1px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.1), 0px 12px 16px -4px rgba(0, 0, 0, 0.1)"
+                  : undefined,
+                marginLeft: isMobile ? "auto" : undefined,
+                marginRight: isMobile ? "auto" : undefined,
+                gap: isMobile ? "32px" : undefined,
+                ...(plan.isPro
                   ? {
                       background: `radial-gradient(ellipse at center, #2525ba 0%, #060482 100%)`,
                     }
-                  : {}
-              }
+                  : {}),
+              }}
             >
               <div className="mb-6">
                 <div className="flex justify-between items-start mb-4">
@@ -141,29 +206,32 @@ const Pricing = () => {
                     }`}
                     style={{
                       fontFamily: "Manrope",
-                      fontSize: "18px",
-                      fontWeight: "600",
+                      fontSize: isMobile ? "24px" : "18px",
+                      fontWeight: isMobile ? 700 : "600",
+                      lineHeight: isMobile ? "130%" : undefined,
+                      letterSpacing: isMobile ? "0%" : undefined,
                     }}
                   >
                     {plan.name}
                   </h3>
                   {plan.isPopular && (
-                    <div className="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-1 rounded-full">
+                    <div className="bg-indigo-100 text-indigo-700 text-xs font-semibold px-3 py-0 rounded-full">
                       Popular
                     </div>
                   )}
                 </div>
 
-                <div className="flex items-baseline mb-3">
+                <div className="flex items-baseline mb-1">
                   <span
                     className={`font-bold ${
                       plan.isPro ? "text-white" : "text-gray-900"
                     }`}
                     style={{
                       fontFamily: "Manrope",
-                      fontSize: "48px",
-                      fontWeight: "700",
-                      lineHeight: "1",
+                      fontSize: isMobile ? "60px" : "48px",
+                      fontWeight: isMobile ? 800 : "700",
+                      lineHeight: isMobile ? "100%" : "1",
+                      letterSpacing: isMobile ? "0%" : undefined,
                     }}
                   >
                     {plan.price}
@@ -174,8 +242,10 @@ const Pricing = () => {
                     }`}
                     style={{
                       fontFamily: "Manrope",
-                      fontSize: "16px",
-                      fontWeight: "400",
+                      fontSize: isMobile ? "18px" : "16px",
+                      fontWeight: isMobile ? 700 : "400",
+                      lineHeight: isMobile ? "130%" : undefined,
+                      letterSpacing: isMobile ? "0%" : undefined,
                     }}
                   >
                     per month
@@ -188,9 +258,10 @@ const Pricing = () => {
                   }`}
                   style={{
                     fontFamily: "Manrope",
-                    fontSize: "14px",
-                    fontWeight: "400",
-                    lineHeight: "1.5",
+                    fontSize: isMobile ? "18px" : "14px",
+                    fontWeight: isMobile ? 600 : "400",
+                    lineHeight: isMobile ? "24px" : "1.5",
+                    letterSpacing: isMobile ? "0%" : undefined,
                   }}
                 >
                   {plan.description}
@@ -198,16 +269,23 @@ const Pricing = () => {
               </div>
 
               <button
-                className={`w-full py-3 rounded-lg font-semibold transition-transform transform hover:scale-105 mb-8 ${
+                className={`w-full rounded-lg font-semibold transition-transform transform hover:scale-105 ${
+                  isMobile ? "mb-1 py-0" : "mb-8 py-3"
+                } ${
                   plan.isPro
                     ? "bg-white text-indigo-700"
                     : "text-white bg-gradient-to-r from-indigo-500 to-blue-500"
                 }`}
                 style={{
                   fontFamily: "Manrope",
-                  fontSize: "16px",
-                  fontWeight: "600",
+                  fontSize: isMobile ? "18px" : "16px",
+                  fontWeight: isMobile ? 700 : "600",
+                  lineHeight: isMobile ? "130%" : undefined,
+                  letterSpacing: isMobile ? "0%" : undefined,
                   padding: "12px 24px",
+                  width: isMobile ? "294px" : undefined,
+                  height: isMobile ? "56px" : undefined,
+                  gap: isMobile ? "12px" : undefined,
                 }}
               >
                 Get started
@@ -227,9 +305,10 @@ const Pricing = () => {
                   }`}
                   style={{
                     fontFamily: "Manrope",
-                    fontSize: "12px",
-                    fontWeight: "600",
-                    letterSpacing: "0.1em",
+                    fontSize: isMobile ? "24px" : "12px",
+                    fontWeight: isMobile ? 700 : "600",
+                    lineHeight: isMobile ? "130%" : undefined,
+                    letterSpacing: isMobile ? "0%" : "0.1em",
                   }}
                 >
                   Features
@@ -254,16 +333,17 @@ const Pricing = () => {
                 <ul className="space-y-4">
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start">
-                      <CheckIcon isProPlan={plan.isPro} />
+                      <CheckIcon isProPlan={plan.isPro} isMobile={isMobile} />
                       <span
                         className={`ml-3 leading-relaxed ${
                           plan.isPro ? "text-gray-300" : "text-gray-700"
                         }`}
                         style={{
                           fontFamily: "Manrope",
-                          fontSize: "16px",
-                          fontWeight: "400",
-                          lineHeight: "1.6",
+                          fontSize: isMobile ? "14px" : "16px",
+                          fontWeight: isMobile ? 500 : "400",
+                          lineHeight: isMobile ? "21px" : "1.6",
+                          letterSpacing: isMobile ? "0%" : undefined,
                         }}
                       >
                         {feature}
