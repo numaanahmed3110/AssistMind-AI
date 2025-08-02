@@ -108,64 +108,6 @@ npm run start    # Start production server
 npm run lint     # Run ESLint
 ```
 
-## 📁 Project Structure
-
-```
-assistmind-ai-landing/
-├── src/
-│   ├── app/
-│   │   ├── globals.css
-│   │   ├── layout.tsx
-│   │   └── page.tsx
-│   └── components/
-│       ├── AiInAction.tsx
-│       ├── EnterpriseCta.tsx
-│       ├── Faq.tsx
-│       ├── FeatureComparison.tsx
-│       ├── FinalCta.tsx
-│       ├── Footer.tsx
-│       ├── Hero.tsx
-│       ├── HowItWorks.tsx
-│       ├── Integrations.tsx
-│       ├── Navbar.tsx
-│       ├── Pricing.tsx
-│       ├── SmarterVoicemail.tsx
-│       └── Testimonials.tsx
-├── public/
-│   ├── images/
-│   ├── agents/
-│   └── companies/
-├── package.json
-├── tailwind.config.ts
-├── tsconfig.json
-└── next.config.ts
-```
-
-## 🧩 Components
-
-### Core Components
-
-- **Hero** - Main landing section with primary CTA
-- **AiInAction** - Interactive demo of AI capabilities
-- **SmarterVoicemail** - Feature showcase with dashboard images
-- **HowItWorks** - Step-by-step process explanation
-- **FeatureComparison** - Competitive advantages table
-- **Testimonials** - Customer reviews carousel
-- **Integrations** - Third-party tool connections
-- **Pricing** - Subscription plans and pricing
-- **Faq** - Expandable Q&A section
-- **Footer** - Contact info and links
-
-## 📱 Responsive Design
-
-- **Mobile-First Approach** - Optimized for all screen sizes
-- **Breakpoints**:
-  - Mobile: `< 768px`
-  - Tablet: `768px - 1024px`
-  - Desktop: `> 1024px`
-- **Flexible Layouts** - CSS Grid and Flexbox
-- **Touch-Friendly** - Appropriate tap targets and spacing
-
 ## 🌐 Deployment
 
 ### Vercel (Recommended)
@@ -180,28 +122,6 @@ assistmind-ai-landing/
 npm run build
 npm run start
 ```
-
-### Environment Variables
-
-No environment variables required for basic deployment.
-
-## 🤝 Contributing
-
-### Development Guidelines
-
-- Follow TypeScript best practices
-- Use Tailwind CSS for styling
-- Maintain responsive design principles
-- Test on multiple devices
-- Follow the existing code style
-
-### Steps to Contribute
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
 
 ## 📄 License
 
@@ -219,3 +139,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 **Built by [Numaan Ahmed](https://github.com/numaanahmed3110)**
 
 For questions or support, please open an issue or contact the development team.
+
