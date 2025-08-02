@@ -136,7 +136,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built by [Numaan Ahmed](https://github.com/numaanahmed3110)**
 
 For questions or support, please open an issue or contact the development team.
+
 
